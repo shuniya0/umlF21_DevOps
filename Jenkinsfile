@@ -20,7 +20,7 @@ podTemplate(containers: [
 
         stage('Get a Maven project') {
 
-            git 'github.com/dlambrig/simple-java-maven-app.git'
+            git 'github.com/dlambrig/simple-java-maven-app'
 
             container('maven') {
 
