@@ -20,7 +20,7 @@ podTemplate(containers: [
         )
     ]
 
-  ])
+  )
   
   {
     node(POD_LABEL) {
