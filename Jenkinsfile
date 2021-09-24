@@ -10,20 +10,19 @@ podTemplate(containers: [
 
         args: '30d'
 
-        ), 
+        )
+    ],  
+    volumes: [
+    persistentVolumeClaim(
+        mountPath: '/root/.m2/repository', 
+        claimName: 'jenkins-pv-claim', 
+        readOnly: false
+        )
+    ]
+
+  ])
   
-  volumes: [
-  persistentVolumeClaim(
-      mountPath: '/root/.m2/repository', 
-      claimName: 'jenkins-pv-claim', 
-      readOnly: false
-      )
-  ]
-
-  ]) {
-
-
-
+  {
     node(POD_LABEL) {
 
         stage('Get a Maven project') {
@@ -41,13 +40,9 @@ podTemplate(containers: [
                     mvn -B -DskipTests clean package
 
                     '''
-
                     }
 
             }
-
         }
-
     }
-
   }
